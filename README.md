@@ -38,3 +38,7 @@ A solução Stark Tools foi desenvolvida durante o Hackathon AI Revolution promo
 
 [Amazon Web Services](https://aws.amazon.com/pt/documentation-overview/?nc2=h_ql_doc_do)
 
+Easy Panel:
+<p align="center"><img src="easypanel.jpeg" width="700" /></p>
+
+
