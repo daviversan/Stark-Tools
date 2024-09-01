@@ -19,8 +19,7 @@
 
 - **Summarização** (soma) Saídas 
 
- 
-<img src="fluxo_whats.png" width="700" />
+<p align="center"><img src="fluxo_whats.png" width="700" /></p>
 
 ## Autores
 - Davi Versan
