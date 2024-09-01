@@ -18,6 +18,17 @@
 - **Summarização** (soma) Saídas 
 
  
+<img src="fluxo_whats.png" width="700" />
 
- 
+## Autores
+- Davi Versan
+- Lucas Pontes
+- Débora Queiroz
+- Pedro Cavalcante
+- Denilson Torres
+
+## Observações
+A solução Stark Tools foi desenvolvida durante o Hackathon AI Revolution promovido pelo Stark Bank nos dias 30/08/2024 a 01/09/2024. O repositório contendo o projeto ficará disponível de forma open source com as devidas atribuições feitas aos autores mencionados nesse documento.
+
+
 
