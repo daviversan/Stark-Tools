@@ -1,5 +1,7 @@
 # Stark-Tools
 
+<p align="center"><img src="https://github.com/theVersan/Stark-Tools/blob/main/hackaton-logo.PNG" width=400></p>
+
 ## Descrição do projeto
 
 <p>A solução Stark Tools foi desenvolvida pensando em resolver a dificuldade de uso de ferramentas de gestão de capital por pessoas não técnicas, especialmente para pequenos empreendedores que não possuem uma estrutura administrativa financeira especializada. Nós atingimos esse objetivo através de uma calculadora financeira integrada ao WhatsApp que funciona por comandos de voz.</p>  
