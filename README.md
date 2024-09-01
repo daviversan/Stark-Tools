@@ -36,3 +36,5 @@ A solução Stark Tools foi desenvolvida durante o Hackathon AI Revolution promo
 
 [Docker](https://hub.docker.com/r/atendai/evolution-api/tags)
 
+[Amazon Web Services](https://aws.amazon.com/pt/documentation-overview/?nc2=h_ql_doc_do)
+
