@@ -31,7 +31,7 @@
 ## Observações
 A solução Stark Tools foi desenvolvida durante o Hackathon AI Revolution promovido pelo Stark Bank nos dias 30/08/2024 a 01/09/2024. O repositório contendo o projeto ficará disponível de forma open source com as devidas atribuições feitas aos autores mencionados nesse documento.
 
-## Documentações e Referências
+## Documentação e Referências
 [API Evolution](https://github.com/EvolutionAPI/evolution-api)
 
 [Docker](https://hub.docker.com/r/atendai/evolution-api/tags)
