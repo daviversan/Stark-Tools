@@ -1,0 +1,107 @@
+{
+  "name": "Primeiro Teste",
+  "nodes": [
+    {
+      "parameters": {
+        "model": "gpt-4o-mini-2024-07-18",
+        "options": {}
+      },
+      "id": "52ab0fba-c031-4b69-b71f-1537334d9289",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        900,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "options": {
+          "systemMessage": "voce é o atendente da stark \n\no seu fluxo de atendimento vai ser : "
+        }
+      },
+      "id": "85f299de-162c-4b33-86ca-d0999825fb79",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        940,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "id": "2d0012cf-c6e3-432c-ac8e-31e849a960f1",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
+      "position": [
+        1220,
+        780
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8555bd6f-b367-45b0-8304-8a73e989cc63",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ],
+      "webhookId": "cd41fb05-4a85-4be2-a60d-4b904acd146d"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f4dfb65d-1722-445e-a8a7-6d6216f8ed95",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "137ca66227545bfd78750876b757a83c6a84a1634d0d9985abd3bd1b094bfeeb"
+  },
+  "id": "t2CL4nohN3Md1hIk",
+  "tags": []
+}

@@ -1,0 +1,371 @@
+{
+  "name": "WhatsApp",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "options": {}
+      },
+      "id": "33e9e080-7891-4984-904d-30f1d9857983",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1800,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "assistant",
+        "operation": "create",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "name": "PAGAMENTO",
+        "description": "Calculadora de pagamentos",
+        "instructions": "👋 Olá! Vou te ajudar a organizar os pagamentos do seu negócio de forma simples e direta.\n\n1. Envie as despesas com valores e vencimentos. Exemplo: \"Aluguel: R$ 1.000,00 - dia 5\"\n\n2. Se faltar a data, o valor, ou se uma data ou valor for informado sem associação a um pagamento específico (por exemplo, uma data como 'dia 8' sem especificar o pagamento), vou te pedir a informação pendente ou perguntar a qual pagamento a data ou valor se refere.\n\n3. Somo o total e te informo.\n\n4. Informe se pagou ou teve desconto. Exemplo: \"Paguei R$ 100,00 da Internet - dia 3\"\n\n5. Ajusto o valor final e te mostro quanto ainda falta pagar.\n\nResumo claro e direto para te ajudar a gerenciar seus pagamentos!",
+        "codeInterpreter": true,
+        "options": {}
+      },
+      "id": "e7fea979-fb86-42b3-8a0f-3b747512f7a5",
+      "name": "PAGAMENTO",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [
+        1560,
+        120
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "1kHxjTPSPuvYqXme",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "assistant",
+        "operation": "create",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "name": "RECEBIMENTO",
+        "description": "Controle de Cobranças",
+        "instructions": "👋 Olá! Vou te ajudar a organizar as cobranças do seu negócio de forma simples e direta.\n\n1. Envie as cobranças com valores e vencimentos. Exemplo: \"Aluguel: R$ 1.000,00 - dia 5\"\n\n2. Se faltar a data, o valor, ou se uma data ou valor for informado sem associação a uma cobrança específica (por exemplo, uma data como 'dia 8' sem especificar o pagamento), vou te pedir a informação pendente ou perguntar a qual cobrança a data ou valor se refere.\n\n3. Somo o total e te informo.\n\n4. Informe se o devedor pagou ou teve desconto. Exemplo: \"Recebi R$ 100,00 da Maria - dia 3\"\n\n5. Ajusto o valor final e te mostro quanto ainda falta cobrar.\n\nResumo claro e direto para te ajudar a gerenciar suas cobranças!",
+        "codeInterpreter": true,
+        "options": {}
+      },
+      "id": "d5d3d305-6c1f-4151-9145-b822ea4ae64f",
+      "name": "COBRANÇAS",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [
+        1560,
+        300
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "1kHxjTPSPuvYqXme",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "assistant",
+        "operation": "create",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "name": "DIRECIONADOR",
+        "description": "Categoria - pagamento ou recebimento",
+        "instructions": "Você é uma calculadora financeira que o usuário está fazendo solicitações, e você precisa classificar as solicitações como PAGAMENTO ou RECEBIMENTO.\n\nPergunte ao usuário se é conta ou recebimento, com uma explicação lúdica, sendo tudo que é conta terá uma saída com a palavra pagamento e tudo que for recebimento é o que o cliente do usuário está pagando para ele.\n\nRecebimento: Algo que alguém vai pagar para você (como uma venda).\n\nPagamento: Algo que você precisa pagar para alguém (como uma conta de luz).\n\nFinalize a interação pedindo para o usuário responder 'pagamento' ou 'recebimento'. Assim que o usuário responder, exiba a frase correspondente: 'Você selecionou PAGAMENTO' ou 'Você selecionou RECEBIMENTO'.",
+        "codeInterpreter": true,
+        "options": {}
+      },
+      "id": "3287e295-1506-4ae5-9e07-699de39652f9",
+      "name": "DIRECIONADOR",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [
+        1040,
+        200
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "1kHxjTPSPuvYqXme",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/pehe/Documentos/data",
+        "options": {}
+      },
+      "id": "50bb46e0-74c8-4dbc-8664-d7caa01de2b8",
+      "name": "Read/Write Files from Disk",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        340
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "id": "0218af93-db18-4a3e-9e4a-fac7d99e9d3c",
+      "name": "TRANSCRITOR",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [
+        840,
+        340
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "1kHxjTPSPuvYqXme",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "385ad35f-5cb3-4a7d-8f1e-7093e4cc1218",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b6662c05-80af-47a0-bcd9-4e99659e9824",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.1,
+      "position": [
+        540,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      transcricao: \"Gostaria de saber sobre pagamentos.\"\n    }\n  },\n  {\n    json: {\n      transcricao: \"Preciso de ajuda com cobranças.\"\n    }\n  }\n];\n"
+      },
+      "id": "33e3bca9-985e-4180-93e1-4a424423a690",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        980,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "path": "evolution",
+        "options": {}
+      },
+      "id": "cba2d3f4-2dce-409c-92e7-f64debb568d3",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        360,
+        220
+      ],
+      "webhookId": "1f264096-181e-4e67-90e3-da95c2000d9e",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "ba3c4333-36b5-446b-adaf-c33f4061c55d",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "31e68f70-133e-4cbd-8570-327c234c929b",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "options": {}
+      },
+      "id": "7569b3a0-e61a-4df7-a768-048ab9842402",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1800,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "PAGAMENTO": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "DIRECIONADOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "DIRECIONADOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TRANSCRITOR": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "PAGAMENTO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "COBRANÇAS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DIRECIONADOR": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "COBRANÇAS": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "367ec0fc-4f2b-4322-9828-9ead65493bf4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "137ca66227545bfd78750876b757a83c6a84a1634d0d9985abd3bd1b094bfeeb"
+  },
+  "id": "j18XnFGYayec6N0O",
+  "tags": []
+}
